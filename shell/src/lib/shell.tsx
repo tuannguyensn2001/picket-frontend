@@ -1,11 +1,10 @@
-import styles from './shell.module.scss';
-import { Header } from '@picket/shared-ui';
+import AppProvider from 'shell/src/lib/app-provider/app-provider';
 
 /* eslint-disable-next-line */
 export interface ShellProps {}
 
 export function Shell(props: ShellProps) {
-  return <Header />;
+  return <AppProvider />;
 }
 
 export default Shell;
