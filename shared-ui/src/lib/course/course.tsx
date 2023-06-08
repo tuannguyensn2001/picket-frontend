@@ -10,6 +10,7 @@ import {
 import styled from 'styled-components';
 import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
 import { useMemo } from 'react';
+import { useTranslation } from '@picket/localization';
 
 export interface CourseProps {
   name: string;
@@ -28,9 +29,14 @@ export function Course({
   numberOfLearners,
   isMember,
 }: CourseProps) {
+  const { t } = useTranslation();
   const text = useMemo(() => {
-    return isMember ? 'Tiếp tục học' : 'Xem khoá học';
-  }, [isMember]);
+    return isMember ? t('course.continue') : t('course.view');
+  }, [isMember, t]);
+
+  const handleClickBtn = () => {
+    console.log('click btn', name);
+  };
 
   return (
     <CustomCard>
@@ -54,7 +60,9 @@ export function Course({
             <Typography>{numberOfLearners}</Typography>
           </Stack>
           <Box>
-            <Button variant={'contained'}>{text}</Button>
+            <Button onClick={handleClickBtn} variant={'contained'}>
+              {text}
+            </Button>
           </Box>
         </Stack>
       </CardContent>

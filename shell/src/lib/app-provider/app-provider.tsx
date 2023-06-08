@@ -13,7 +13,11 @@ const router = createBrowserRouter([
 ]);
 
 export function AppProvider(props: AppProviderProps) {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+    </>
+  );
 }
 
 export default AppProvider;

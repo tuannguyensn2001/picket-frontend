@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@picket/localization": ["localization/src/index.ts"],
       "@picket/shared-ui": ["shared-ui/src/index.ts"],
       "@picket/shell": ["shell/src/index.ts"]
     }

@@ -4,7 +4,8 @@ import styled from 'styled-components';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { useMedia } from 'react-use';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import { useTranslation } from '@picket/localization';
 
 /* eslint-disable-next-line */
 export interface HeaderProps {}
@@ -14,14 +15,28 @@ const Wrapper = styled(Box)`
 `;
 
 export function Header(props: HeaderProps) {
+  const { t } = useTranslation();
   const isWide = useMedia('(min-width: 720px)');
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
+
+  const menu = useMemo(() => {
+    return [
+      {
+        name: t('header.home'),
+        url: '/',
+      },
+      {
+        name: t('header.courses'),
+        url: '/courses',
+      },
+    ];
+  }, [t]);
 
   return (
     <Wrapper>
       <Stack py={2} direction={'row'} justifyContent={'space-between'}>
         <Box>
-          {isWide && <Typography>Picket</Typography>}
+          {isWide && <Typography>{t('header.title')}</Typography>}
           {!isWide && (
             <>
               <MenuIcon onClick={() => setIsOpenDrawer(true)} />
@@ -37,12 +52,17 @@ export function Header(props: HeaderProps) {
         </Box>
         {isWide && (
           <Stack spacing={{ xs: 5 }} direction={'row'}>
-            <HeaderCenterItem name={'Trang chủ'} url={'/'} />
-            <HeaderCenterItem name={'Khoá học'} url={'/courses'} />
+            {menu.map((item) => (
+              <HeaderCenterItem
+                name={item.name}
+                url={item.url}
+                key={item.url}
+              />
+            ))}
           </Stack>
         )}
         <Stack spacing={{ xs: 3 }} direction={'row'}>
-          {isWide && <Typography>Khoa hoc cua toi</Typography>}
+          {isWide && <Typography>{t('header.my_course')}</Typography>}
           <Box>
             <NotificationsIcon />
           </Box>
