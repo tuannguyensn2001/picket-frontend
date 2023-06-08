@@ -1,4 +1,12 @@
-import { Avatar, Box, Divider, Drawer, Stack, Typography } from '@mui/material';
+import {
+  Avatar,
+  Box,
+  Button,
+  Divider,
+  Drawer,
+  Stack,
+  Typography,
+} from '@mui/material';
 import HeaderCenterItem from 'shared-ui/src/lib/header-center-item/header-center-item';
 import styled from 'styled-components';
 import NotificationsIcon from '@mui/icons-material/Notifications';
@@ -6,6 +14,7 @@ import { useMedia } from 'react-use';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useMemo, useState } from 'react';
 import { useTranslation } from '@picket/localization';
+import useUser from 'auth/src/useUser';
 
 /* eslint-disable-next-line */
 export interface HeaderProps {}
@@ -32,9 +41,11 @@ export function Header(props: HeaderProps) {
     ];
   }, [t]);
 
+  const { data: user } = useUser();
+
   return (
     <Wrapper>
-      <Stack py={2} direction={'row'} justifyContent={'space-between'}>
+      <Stack px={4} py={2} direction={'row'} justifyContent={'space-between'}>
         <Box>
           {isWide && <Typography>{t('header.title')}</Typography>}
           {!isWide && (
@@ -61,18 +72,21 @@ export function Header(props: HeaderProps) {
             ))}
           </Stack>
         )}
-        <Stack spacing={{ xs: 3 }} direction={'row'}>
-          {isWide && <Typography>{t('header.my_course')}</Typography>}
-          <Box>
-            <NotificationsIcon />
-          </Box>
-          <Avatar
-            sx={{ width: 27, height: 27 }}
-            src={
-              'https://www.dutchnews.nl/wpcms/wp-content/uploads/2022/10/Depositphotos_454636608_S.jpg'
-            }
-          />
-        </Stack>
+        {user && (
+          <Stack spacing={{ xs: 3 }} direction={'row'}>
+            <Stack mt={0.3} direction={'row'} spacing={{ xs: 3 }}>
+              {isWide && <Typography>{t('header.my_course')}</Typography>}
+              <Box>
+                <NotificationsIcon />
+              </Box>
+            </Stack>
+            <Avatar
+              sx={{ width: 27, height: 27 }}
+              src={user?.profile?.avatar_url}
+            />
+          </Stack>
+        )}
+        {!user && <Button variant={'contained'}>{t('header.login')}</Button>}
       </Stack>
       <Divider />
     </Wrapper>
