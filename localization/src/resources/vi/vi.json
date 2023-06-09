@@ -4,5 +4,23 @@
     "home": "Trang chủ",
     "courses": "Khoá học",
     "my_course": "Khoá học của tôi"
+  },
+  "auth": {
+    "validation": {
+      "email": {
+        "required": "Email không được để trống",
+        "format": "Email không đúng định dạng"
+      },
+      "password": {
+        "min": "Mật khẩu phải có ít nhất {{min}} ký tự",
+        "required": "Mật khẩu không được để trống"
+      }
+    },
+    "remember_me": "Ghi nhớ đăng nhập",
+    "login": "Đăng nhập",
+    "forgot_password": "Quên mật khẩu",
+    "register": "Đăng ký",
+    "email": "Email",
+    "password": "Mật khẩu"
   }
 }

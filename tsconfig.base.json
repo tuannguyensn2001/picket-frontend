@@ -16,7 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "@picket/auth": ["auth/src/index.ts"],
+      "@picket/home": ["home/src/index.ts"],
       "@picket/localization": ["localization/src/index.ts"],
+      "@picket/routing": ["routing/src/index.ts"],
       "@picket/services": ["services/src/index.ts"],
       "@picket/shared-type": ["shared-type/src/index.ts"],
       "@picket/shared-ui": ["shared-ui/src/index.ts"],
