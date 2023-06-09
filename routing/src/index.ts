@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { Login, withAuth } from '@picket/auth';
 import { layout } from '@picket/shared-ui';
+import { compose } from '@picket/utils';
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
     async lazy() {
       const { Home } = await import('@picket/home');
       return {
-        Component: withAuth(layout(Home)),
+        Component: compose(withAuth(), layout)(Home),
       };
     },
   },

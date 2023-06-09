@@ -2,20 +2,22 @@ import React, { createElement } from 'react';
 import useUser from '../../useUser';
 import { Navigate } from 'react-router-dom';
 
-export function withAuth(component: React.ComponentType, reverse = false) {
-  const Component = (props: any) => {
-    const { isError, isLoading } = useUser();
+export function withAuth(reverse = false) {
+  return (component: React.ComponentType) => {
+    const Component = (props: any) => {
+      const { isError, isLoading } = useUser();
 
-    if (isLoading) {
-      return <div>Loading...</div>;
-    }
+      if (isLoading) {
+        return <div>Loading...</div>;
+      }
 
-    if (isError) {
-      return <Navigate to={'/auth/login'} />;
-    }
+      if (isError) {
+        return <Navigate to={'/auth/login'} />;
+      }
 
-    return createElement(component, props);
+      return createElement(component, props);
+    };
+
+    return Component;
   };
-
-  return Component;
 }
