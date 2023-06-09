@@ -1,20 +1,13 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  Divider,
-  Drawer,
-  Stack,
-  Typography,
-} from '@mui/material';
-import HeaderCenterItem from 'shared-ui/src/lib/header-center-item/header-center-item';
+import { Box, Button, Divider, Drawer, Stack, Typography } from '@mui/material';
+import HeaderCenterItem from '../header-center-item/header-center-item';
 import styled from 'styled-components';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import { useMedia } from 'react-use';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useMemo, useState } from 'react';
 import { useTranslation } from '@picket/localization';
-import useUser from 'auth/src/useUser';
+import HeaderMenuProfile from '../header-menu-profile/header-menu-profile';
+import HeaderNotification from '../header-notification/header-notification';
+import { useUser } from '@picket/auth';
 
 /* eslint-disable-next-line */
 export interface HeaderProps {}
@@ -46,7 +39,7 @@ export function Header(props: HeaderProps) {
   return (
     <Wrapper>
       <Stack px={4} py={2} direction={'row'} justifyContent={'space-between'}>
-        <Box>
+        <Stack justifyContent={'center'}>
           {isWide && <Typography>{t('header.title')}</Typography>}
           {!isWide && (
             <>
@@ -60,7 +53,7 @@ export function Header(props: HeaderProps) {
               </Drawer>
             </>
           )}
-        </Box>
+        </Stack>
         {isWide && (
           <Stack spacing={{ xs: 5 }} direction={'row'}>
             {menu.map((item) => (
@@ -74,16 +67,12 @@ export function Header(props: HeaderProps) {
         )}
         {user && (
           <Stack spacing={{ xs: 3 }} direction={'row'}>
-            <Stack mt={0.3} direction={'row'} spacing={{ xs: 3 }}>
-              {isWide && <Typography>{t('header.my_course')}</Typography>}
-              <Box>
-                <NotificationsIcon />
-              </Box>
+            <Stack direction={'row'} spacing={{ xs: 3 }}>
+              <Stack justifyContent={'center'}>
+                <HeaderNotification />
+              </Stack>
             </Stack>
-            <Avatar
-              sx={{ width: 27, height: 27 }}
-              src={user?.profile?.avatar_url}
-            />
+            <HeaderMenuProfile avatar_url={user?.profile?.avatar_url} />
           </Stack>
         )}
         {!user && <Button variant={'contained'}>{t('header.login')}</Button>}

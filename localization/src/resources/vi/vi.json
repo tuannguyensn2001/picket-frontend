@@ -3,7 +3,11 @@
     "title": "Picket ",
     "home": "Trang chủ",
     "courses": "Khoá học",
-    "my_course": "Khoá học của tôi"
+    "my_course": "Khoá học của tôi",
+    "logout": "Đăng xuất",
+    "settings": "Cài đặt",
+    "account": "Tài khoản",
+    "notifications": "Thông báo"
   },
   "auth": {
     "validation": {

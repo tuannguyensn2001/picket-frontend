@@ -1,5 +1,5 @@
 import styles from './header-center-item.module.scss';
-import { Box, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
@@ -18,11 +18,13 @@ const CustomLink = styled(Link)`
 
 export function HeaderCenterItem({ name, url }: HeaderCenterItemProps) {
   return (
-    <CustomLink to={url}>
-      <Wrapper>
-        <Typography>{name}</Typography>
-      </Wrapper>
-    </CustomLink>
+    <Stack justifyContent={'center'}>
+      <CustomLink to={url}>
+        <Wrapper>
+          <Typography>{name}</Typography>
+        </Wrapper>
+      </CustomLink>
+    </Stack>
   );
 }
 
