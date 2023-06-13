@@ -6,5 +6,9 @@ import { AxiosError } from 'axios';
 export function useUser() {
   return useQuery<IUser, AxiosError<AppResponse>>('user', getMe, {
     retry: false,
+    onError() {
+      localStorage.removeItem('token');
+    },
+    refetchOnWindowFocus: false,
   });
 }

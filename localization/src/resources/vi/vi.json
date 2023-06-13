@@ -25,6 +25,7 @@
     "forgot_password": "Quên mật khẩu",
     "register": "Đăng ký",
     "email": "Email",
-    "password": "Mật khẩu"
+    "password": "Mật khẩu",
+    "login_with_google": "Đăng nhập với Google"
   }
 }

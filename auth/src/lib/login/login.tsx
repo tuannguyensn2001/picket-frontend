@@ -24,8 +24,10 @@ import { useTranslation } from '@picket/localization';
 import { useMemo } from 'react';
 import { useMutation } from 'react-query';
 import { AxiosError } from 'axios';
-import { fetchLogin } from '@picket/services';
+import { fetchLogin, fetchLoginWithGoogle } from '@picket/services';
 import { useNavigate } from 'react-router-dom';
+import { Google } from '@mui/icons-material';
+import { useGoogleLogin } from '@react-oauth/google';
 
 export function Login() {
   const { t } = useTranslation();
@@ -64,9 +66,30 @@ export function Login() {
     onError: console.log,
   });
 
+  const { mutate: mutateLoginGoogle } = useMutation<
+    LoginResponse,
+    AxiosError<AppResponse>,
+    string
+  >({
+    mutationFn: fetchLoginWithGoogle,
+    mutationKey: 'loginGoogle',
+    onSuccess(data) {
+      localStorage.setItem('token', data.access_token);
+      navigate('/');
+    },
+    onError: console.log,
+  });
+
   const submit = (data: LoginForm) => {
     mutate(data);
   };
+
+  const submitGoogle = useGoogleLogin({
+    flow: 'auth-code',
+    onSuccess: (response) => {
+      mutateLoginGoogle(response.code);
+    },
+  });
 
   return (
     <Grid container component="main" sx={{ height: '100vh' }}>
@@ -159,6 +182,17 @@ export function Login() {
             >
               {t('auth.login')}
             </Button>
+            <Button
+              onClick={submitGoogle}
+              type="button"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+              startIcon={<Google />}
+            >
+              {t('auth.login_with_google')}
+            </Button>
+
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">

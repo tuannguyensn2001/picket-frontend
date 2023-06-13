@@ -6,7 +6,9 @@
   "targets": {
     "build": {
       "executor": "@nx/vite:build",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "defaultConfiguration": "production",
       "options": {
         "outputPath": "dist/picket"
@@ -24,7 +26,8 @@
       "executor": "@nx/vite:dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "picket:build"
+        "buildTarget": "picket:build",
+        "port": 3000
       },
       "configurations": {
         "development": {
@@ -54,7 +57,9 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": ["coverage/picket"],
+      "outputs": [
+        "coverage/picket"
+      ],
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "coverage/picket"
@@ -62,9 +67,13 @@
     },
     "lint": {
       "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["./src/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": [
+          "./src/**/*.{ts,tsx,js,jsx}"
+        ]
       }
     },
     "serve-static": {
@@ -87,7 +96,9 @@
     },
     "build-storybook": {
       "executor": "@nx/storybook:build",
-      "outputs": ["{options.outputDir}"],
+      "outputs": [
+        "{options.outputDir}"
+      ],
       "options": {
         "outputDir": "dist/storybook/picket",
         "configDir": "./.storybook"

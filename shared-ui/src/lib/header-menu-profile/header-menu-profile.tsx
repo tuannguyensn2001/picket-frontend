@@ -7,6 +7,7 @@ import {
   ListItemIcon,
   Menu,
   MenuItem,
+  Stack,
   Tooltip,
   Typography,
 } from '@mui/material';
@@ -21,6 +22,7 @@ import { useLogout } from '@picket/auth';
 /* eslint-disable-next-line */
 export interface HeaderMenuProfileProps {
   avatar_url?: string;
+  username: string;
 }
 
 export function HeaderMenuProfile(props: HeaderMenuProfileProps) {
@@ -41,7 +43,7 @@ export function HeaderMenuProfile(props: HeaderMenuProfileProps) {
     <Box>
       <Tooltip title={t('header.account')}>
         <IconButton onClick={handleOpen}>
-          <Avatar sx={{ width: 27, height: 27 }} src={props.avatar_url} />
+          <Avatar sx={{ width: 32, height: 32 }} src={props.avatar_url} />
         </IconButton>
       </Tooltip>
 
@@ -78,6 +80,15 @@ export function HeaderMenuProfile(props: HeaderMenuProfileProps) {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
+        <MenuItem>
+          <Stack direction={'row'}>
+            <Avatar sx={{ width: 40, height: 40 }} src={props.avatar_url} />
+            <Stack justifyContent={'center'}>
+              <Typography>{props.username}</Typography>
+            </Stack>
+          </Stack>
+        </MenuItem>
+        <Divider />
         <MenuItem>
           <ListItemIcon>
             <SaveIcon />

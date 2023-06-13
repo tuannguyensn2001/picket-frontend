@@ -13,3 +13,8 @@ export const fetchLogin = async (data: LoginRequest) => {
   const response = await API.post('/api/v1/auth/login', data);
   return response.data.data;
 };
+
+export const fetchLoginWithGoogle = async (code: string) => {
+  const response = await API.post('/api/v1/auth/login/google', { code });
+  return response.data.data;
+};

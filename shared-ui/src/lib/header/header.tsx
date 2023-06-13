@@ -72,7 +72,10 @@ export function Header(props: HeaderProps) {
                 <HeaderNotification />
               </Stack>
             </Stack>
-            <HeaderMenuProfile avatar_url={user?.profile?.avatar_url} />
+            <HeaderMenuProfile
+              username={user.username}
+              avatar_url={user?.profile?.avatar_url}
+            />
           </Stack>
         )}
         {!user && <Button variant={'contained'}>{t('header.login')}</Button>}

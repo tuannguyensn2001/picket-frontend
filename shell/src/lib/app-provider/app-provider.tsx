@@ -2,6 +2,7 @@ import { RouterProvider } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { router } from '@picket/routing';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 /* eslint-disable-next-line */
 export interface AppProviderProps {}
@@ -13,7 +14,16 @@ export function AppProvider(props: AppProviderProps) {
     <>
       <QueryClientProvider client={client}>
         <ReactQueryDevtools />
-        <RouterProvider fallbackElement={<div>loading</div>} router={router} />
+        <GoogleOAuthProvider
+          clientId={
+            '406915386923-nohqgg2rjqh348qomg6c1964luit4u38.apps.googleusercontent.com'
+          }
+        >
+          <RouterProvider
+            fallbackElement={<div>loading</div>}
+            router={router}
+          />
+        </GoogleOAuthProvider>
       </QueryClientProvider>
     </>
   );
