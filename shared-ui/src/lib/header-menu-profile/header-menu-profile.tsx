@@ -1,4 +1,3 @@
-import styles from './header-menu-profile.module.scss';
 import {
   Avatar,
   Box,
@@ -11,8 +10,7 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
-import { useRef, useState } from 'react';
-import React from 'react';
+import React, { useState } from 'react';
 import { Logout } from '@mui/icons-material';
 import { useTranslation } from '@picket/localization';
 import SettingsIcon from '@mui/icons-material/Settings';

@@ -1,5 +1,4 @@
-import styles from './header-center-item.module.scss';
-import { Box, Stack, Typography } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 

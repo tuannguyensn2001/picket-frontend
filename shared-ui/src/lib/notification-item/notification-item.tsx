@@ -1,5 +1,4 @@
-import styles from './notification-item.module.scss';
-import { Avatar, Box, Stack, Typography } from '@mui/material';
+import { Avatar, Box, Stack } from '@mui/material';
 
 /* eslint-disable-next-line */
 export interface NotificationItemProps {

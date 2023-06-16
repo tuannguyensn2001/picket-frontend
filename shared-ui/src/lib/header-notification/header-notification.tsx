@@ -1,15 +1,21 @@
-import { Box, IconButton, Tooltip } from '@mui/material';
+import { Badge, Box, IconButton, Tooltip } from '@mui/material';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { useTranslation } from '@picket/localization';
 
-export function HeaderNotification() {
+interface Props {
+  numberOfNotifications: number;
+}
+
+export function HeaderNotification({ numberOfNotifications }: Props) {
   const { t } = useTranslation();
   return (
     <Box>
       <Tooltip title={t('header.notifications')}>
-        <IconButton>
-          <NotificationsIcon />
-        </IconButton>
+        <Badge color={'error'} badgeContent={numberOfNotifications}>
+          <IconButton>
+            <NotificationsIcon />
+          </IconButton>
+        </Badge>
       </Tooltip>
     </Box>
   );
