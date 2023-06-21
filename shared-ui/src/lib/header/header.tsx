@@ -69,7 +69,7 @@ export function Header(props: HeaderProps) {
           <Stack spacing={{ xs: 3 }} direction={'row'}>
             <Stack direction={'row'} spacing={{ xs: 3 }}>
               <Stack justifyContent={'center'}>
-                <HeaderNotification numberOfNotifications={10} />
+                <HeaderNotification />
               </Stack>
             </Stack>
             <HeaderMenuProfile

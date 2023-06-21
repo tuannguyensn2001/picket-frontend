@@ -16,12 +16,19 @@ import { useTranslation } from '@picket/localization';
 import SettingsIcon from '@mui/icons-material/Settings';
 import SaveIcon from '@mui/icons-material/Save';
 import { useLogout } from '@picket/auth';
+import { Link, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
 /* eslint-disable-next-line */
 export interface HeaderMenuProfileProps {
   avatar_url?: string;
   username: string;
 }
+
+const CustomLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`;
 
 export function HeaderMenuProfile(props: HeaderMenuProfileProps) {
   const [anchor, setAnchor] = useState<null | HTMLElement>(null);
@@ -36,6 +43,10 @@ export function HeaderMenuProfile(props: HeaderMenuProfileProps) {
 
   const { t } = useTranslation();
   const logout = useLogout();
+
+  const navigate = useNavigate();
+
+  const redirect = (url: string) => () => navigate(url);
 
   return (
     <Box>
@@ -94,12 +105,14 @@ export function HeaderMenuProfile(props: HeaderMenuProfileProps) {
           <Typography>{t('header.my_course')}</Typography>
         </MenuItem>
         <Divider />
-        <MenuItem>
-          <ListItemIcon>
-            <SettingsIcon />
-          </ListItemIcon>
-          <Typography>{t('header.settings')}</Typography>
-        </MenuItem>
+        <CustomLink to={'/settings/personal'}>
+          <MenuItem>
+            <ListItemIcon>
+              <SettingsIcon />
+            </ListItemIcon>
+            <Typography>{t('header.settings')}</Typography>
+          </MenuItem>
+        </CustomLink>
         <MenuItem onClick={logout}>
           <ListItemIcon>
             <Logout />

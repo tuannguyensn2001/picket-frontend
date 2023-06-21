@@ -10,4 +10,5 @@ export declare interface IUser {
 
 export declare interface IProfile {
   avatar_url: string;
+  id: number;
 }

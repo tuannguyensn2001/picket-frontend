@@ -1,4 +1,10 @@
 {
+  "settings": {
+    "personal": "Cài đặt tài khoản",
+    "security": "Bảo mật và đăng nhập",
+    "notification": "Thông báo",
+    "account_profile": "Thông tin cá "
+  },
   "header": {
     "title": "Picket ",
     "home": "Trang chủ",
