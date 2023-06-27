@@ -31,7 +31,7 @@ export function NotificationItem(props: NotificationItemProps) {
     <ListItemButton selected={!props.read_at} alignItems="flex-start">
       {/*<ListItemButton>*/}
       <ListItemAvatar>
-        <Avatar alt="Remy Sharp" src={props.from.profile?.avatar_url} />
+        <Avatar alt="Remy Sharp" src={props.from_user.profile?.avatar_url} />
       </ListItemAvatar>
       <ListItemText
         // primary="Brunch this weekend?"

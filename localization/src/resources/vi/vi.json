@@ -3,7 +3,12 @@
     "personal": "Cài đặt tài khoản",
     "security": "Bảo mật và đăng nhập",
     "notification": "Thông báo",
-    "account_profile": "Thông tin cá "
+    "account_profile": "Thông tin cá nhân",
+    "avatar": "Avatar",
+    "edit": "Chỉnh sửa",
+    "avatar_description": "Nên là ảnh vuông, chấp nhận các tệp: JPG, PNG hoặc GIF.",
+    "save": "Lưu",
+    "cancel": "Hủy"
   },
   "header": {
     "title": "Picket ",

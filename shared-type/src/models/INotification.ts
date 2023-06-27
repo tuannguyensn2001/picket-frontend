@@ -7,8 +7,8 @@ interface Payload {
 export declare interface INotification {
   avatar_url: string;
   html_content: string;
-  from: IUser;
-  to: IUser;
+  from: number;
+  to: number;
   template: string;
   payload: Payload;
   type: string;
@@ -16,4 +16,6 @@ export declare interface INotification {
   created_at: number;
   updated_at: number;
   id: number;
+  from_user: IUser;
+  to_user: IUser;
 }
