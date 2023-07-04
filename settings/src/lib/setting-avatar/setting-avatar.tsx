@@ -5,6 +5,9 @@ import { useUser } from '@picket/auth';
 import { useDropzone } from 'react-dropzone';
 import { useState } from 'react';
 import styled from 'styled-components';
+import { useMutation } from 'react-query';
+import { AppError, AppResponse } from '@picket/shared-type';
+import { updateAvatar, uploadFile } from '@picket/services';
 
 const BaseAvatar = styled(Avatar)`
   &:hover {
@@ -33,14 +36,38 @@ export function SettingAvatar() {
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: (acceptedFiles) => {
       const [file] = acceptedFiles;
-      setAvatar(URL.createObjectURL(file));
+      const form = new FormData();
+      form.append('file', file);
+      mutateUploadAvatar(form);
     },
     multiple: false,
   });
+
+  const { mutate: mutateUploadAvatar } = useMutation<
+    string,
+    AppError,
+    FormData
+  >({
+    mutationFn: uploadFile,
+    mutationKey: 'uploadAvatar',
+    onSuccess: (url) => setAvatar(url),
+  });
+
+  const { mutate: mutateUpdateAvatar } = useMutation<null, AppError, string>({
+    mutationKey: 'updateAvatar',
+    mutationFn: updateAvatar,
+    onSuccess: () => setOn(false),
+  });
+
   const [on, setOn] = useState(false);
   const cancel = () => {
     setOn(false);
     setAvatar(user?.profile?.avatar_url);
+  };
+
+  const handleSave = () => {
+    if (!avatar) return;
+    mutateUpdateAvatar(avatar);
   };
 
   return (
@@ -74,7 +101,7 @@ export function SettingAvatar() {
           )}
           {on && (
             <Stack direction={'row'}>
-              <Button>{t('settings.save')}</Button>
+              <Button onClick={handleSave}>{t('settings.save')}</Button>
               <Button onClick={cancel}>{t('settings.cancel')}</Button>
             </Stack>
           )}
