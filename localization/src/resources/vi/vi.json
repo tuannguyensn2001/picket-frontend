@@ -8,7 +8,9 @@
     "edit": "Chỉnh sửa",
     "avatar_description": "Nên là ảnh vuông, chấp nhận các tệp: JPG, PNG hoặc GIF.",
     "save": "Lưu",
-    "cancel": "Hủy"
+    "cancel": "Hủy",
+    "avatar_update_success": "Cập nhật avatar thành công",
+    "avatar_update_error": "Cập nhật avatar thất bại"
   },
   "header": {
     "title": "Picket ",

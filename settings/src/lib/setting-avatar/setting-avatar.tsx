@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import { useMutation } from 'react-query';
 import { AppError, AppResponse } from '@picket/shared-type';
 import { updateAvatar, uploadFile } from '@picket/services';
+import { toast } from 'react-toastify';
 
 const BaseAvatar = styled(Avatar)`
   &:hover {
@@ -56,7 +57,13 @@ export function SettingAvatar() {
   const { mutate: mutateUpdateAvatar } = useMutation<null, AppError, string>({
     mutationKey: 'updateAvatar',
     mutationFn: updateAvatar,
-    onSuccess: () => setOn(false),
+    onSuccess: () => {
+      setOn(false);
+      toast.success(t('settings.avatar_update_success'));
+    },
+    onError: () => {
+      toast.error(t('settings.avatar_update_error'));
+    },
   });
 
   const [on, setOn] = useState(false);
